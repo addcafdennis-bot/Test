@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Sambong by Kalinga Herbal — Natural Kidney & Urinary Support | Cash on Delivery</title>
+<meta name="description" content="Sambong (Blumea balsamifera) herbal capsules — supports kidney health, helps flush uric acid, and eases water retention. DOH-recognized herb. Cash on Delivery nationwide." />
+
+<!--
+  ============================================================
+  PLACEHOLDERS TO UPDATE BEFORE LAUNCH (search for "[[ ]]"):
+  - [[PRICE_1]]  single bottle price        (currently ₱990)
+  - [[PRICE_2]]  buy 2 + 1 free price        (currently ₱1,890)
+  - [[PRICE_3]]  buy 3 + 2 free price        (currently ₱2,790)
+  - [[PHONE]]    order hotline               (currently 0900-000-0000)
+  - [[FB]]       Messenger / Facebook link   (currently #)
+  - [[FORM_ENDPOINT]] where the COD order POSTs (see <form> + JS at bottom)
+  - [[FDA]]      FDA / DOH registration text  (verify before publishing)
+  - [[SOLD]]     units-sold social proof      (currently 12,000+)
+  - Replace image placeholders (.ph-img) with real product / customer photos.
+  All health claims are written conservatively. Verify against your FDA
+  notification before launch and keep the medical disclaimer at the bottom.
+  ============================================================
+-->
+
+<style>
+  :root{
+    --green:#1f7a3d; --green-d:#155c2c; --green-l:#e8f5ec;
+    --gold:#f5a623; --ink:#1c2421; --muted:#5a6b62;
+    --bg:#ffffff; --soft:#f4f8f5; --line:#e2ebe5;
+    --radius:16px; --shadow:0 8px 30px rgba(20,60,30,.10);
+    --max:1080px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 18px}
+  .ph-img{background:linear-gradient(135deg,var(--green-l),#cfe8d6);
+    display:flex;align-items:center;justify-content:center;color:var(--green-d);
+    font-weight:600;font-size:14px;text-align:center;border-radius:var(--radius);min-height:220px}
+
+  /* ---------- top trust bar ---------- */
+  .topbar{background:var(--green-d);color:#fff;font-size:13px;text-align:center;padding:7px 12px;font-weight:600;letter-spacing:.2px}
+
+  /* ---------- header ---------- */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);
+    backdrop-filter:saturate(180%) blur(8px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:18px;color:var(--green-d)}
+  .brand .leaf{width:30px;height:30px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-weight:800;border:none;cursor:pointer;border-radius:999px;
+    padding:13px 22px;font-size:15px;transition:transform .08s ease,box-shadow .2s ease;line-height:1}
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{background:var(--gold);color:#3a2600;box-shadow:0 6px 18px rgba(245,166,35,.4)}
+  .btn-primary:hover{box-shadow:0 8px 24px rgba(245,166,35,.55)}
+  .btn-green{background:var(--green);color:#fff;box-shadow:0 6px 18px rgba(31,122,61,.35)}
+  .btn-ghost{background:#fff;color:var(--green-d);border:2px solid var(--green)}
+  .nav .btn{padding:10px 18px;font-size:14px}
+
+  /* ---------- hero ---------- */
+  .hero{background:radial-gradient(1200px 500px at 80% -10%,var(--green-l),#fff 60%);padding:34px 0 14px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:center}
+  .pill{display:inline-flex;align-items:center;gap:7px;background:var(--green-l);color:var(--green-d);
+    font-weight:700;font-size:13px;padding:7px 13px;border-radius:999px;margin-bottom:14px}
+  h1{font-size:40px;line-height:1.12;letter-spacing:-.5px;margin-bottom:14px}
+  h1 .hl{color:var(--green-d)}
+  .lede{font-size:18px;color:var(--muted);margin-bottom:18px}
+  .ticks{list-style:none;margin:0 0 22px;display:grid;gap:9px}
+  .ticks li{display:flex;gap:10px;align-items:flex-start;font-weight:600;font-size:15px}
+  .ticks .c{flex:0 0 22px;height:22px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:1px}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .rating{display:flex;align-items:center;gap:9px;margin-top:16px;font-size:14px;color:var(--muted)}
+  .stars{color:var(--gold);font-size:17px;letter-spacing:1px}
+  .hero-img{position:relative}
+  .badge-float{position:absolute;bottom:-12px;left:-10px;background:#fff;border:1px solid var(--line);
+    box-shadow:var(--shadow);border-radius:14px;padding:10px 14px;font-size:13px;font-weight:700;color:var(--green-d)}
+
+  /* ---------- trust strip ---------- */
+  .trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--soft);margin-top:18px}
+  .trust .wrap{display:flex;flex-wrap:wrap;gap:14px 28px;justify-content:center;align-items:center;padding:16px 18px}
+  .trust .t{display:flex;align-items:center;gap:9px;font-weight:700;font-size:14px;color:var(--green-d)}
+  .trust .t .ic{font-size:18px}
+
+  /* ---------- sections ---------- */
+  section{padding:54px 0}
+  .eyebrow{text-align:center;color:var(--green);font-weight:800;letter-spacing:1.5px;font-size:13px;text-transform:uppercase;margin-bottom:10px}
+  h2{text-align:center;font-size:30px;line-height:1.2;letter-spacing:-.3px;margin-bottom:10px}
+  .sub{text-align:center;color:var(--muted);max-width:620px;margin:0 auto 34px;font-size:17px}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
+  .card .ic{width:48px;height:48px;border-radius:12px;background:var(--green-l);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:14px}
+  .card h3{font-size:18px;margin-bottom:7px}
+  .card p{color:var(--muted);font-size:15px}
+
+  .pain{background:var(--soft)}
+  .pain-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:760px;margin:0 auto}
+  .pain-list li{list-style:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px 16px;display:flex;gap:11px;font-weight:600;font-size:15px}
+  .pain-list .x{color:#c0392b;font-size:18px}
+
+  /* ---------- steps ---------- */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;counter-reset:s}
+  .step{position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 22px}
+  .step .n{width:40px;height:40px;border-radius:50%;background:var(--green);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;margin-bottom:14px;font-size:18px}
+  .step h3{font-size:18px;margin-bottom:6px}.step p{color:var(--muted);font-size:15px}
+
+  /* ---------- pricing / offer ---------- */
+  .offer{background:linear-gradient(180deg,var(--green-l),#fff)}
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
+  .plan{background:#fff;border:2px solid var(--line);border-radius:18px;padding:26px 22px;position:relative;display:flex;flex-direction:column}
+  .plan.best{border-color:var(--green);box-shadow:var(--shadow);transform:translateY(-6px)}
+  .plan .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gold);color:#3a2600;font-weight:800;font-size:12px;padding:6px 14px;border-radius:999px;white-space:nowrap}
+  .plan h3{font-size:19px;margin-bottom:4px}
+  .plan .qty{color:var(--muted);font-size:14px;margin-bottom:14px}
+  .plan .price{font-size:34px;font-weight:800;color:var(--green-d);line-height:1}
+  .plan .was{color:var(--muted);text-decoration:line-through;font-size:15px;margin-top:6px}
+  .plan .save{display:inline-block;margin-top:8px;background:#fdeccd;color:#7a4d00;font-weight:700;font-size:13px;padding:4px 10px;border-radius:999px}
+  .plan ul{list-style:none;margin:16px 0 20px;display:grid;gap:8px}
+  .plan ul li{font-size:14px;color:var(--ink);display:flex;gap:8px}.plan ul li::before{content:"✓";color:var(--green);font-weight:800}
+  .plan .btn{margin-top:auto;width:100%}
+
+  /* ---------- testimonials ---------- */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .quote{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+  .quote .stars{font-size:15px}
+  .quote p{font-size:15px;margin:10px 0 14px}
+  .who{display:flex;align-items:center;gap:11px}
+  .who .av{width:42px;height:42px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800}
+  .who b{font-size:14px;display:block}.who span{font-size:12px;color:var(--muted)}
+
+  /* ---------- order form ---------- */
+  .order{background:var(--green-d);color:#fff}
+  .order h2{color:#fff}.order .sub{color:#cfe6d6}
+  .order-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:30px;align-items:start}
+  .order-info li{list-style:none;display:flex;gap:11px;margin-bottom:14px;font-size:15px;align-items:flex-start}
+  .order-info .ic{flex:0 0 26px;height:26px;border-radius:7px;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;font-size:15px}
+  .order-info b{display:block}
+  .order-info small{color:#bcd9c6}
+  .formcard{background:#fff;color:var(--ink);border-radius:18px;padding:24px;box-shadow:var(--shadow)}
+  .formcard h3{font-size:20px;margin-bottom:4px;color:var(--green-d)}
+  .formcard .fc-sub{color:var(--muted);font-size:14px;margin-bottom:16px}
+  .field{margin-bottom:13px}
+  .field label{display:block;font-weight:700;font-size:13px;margin-bottom:5px}
+  .field input,.field select,.field textarea{width:100%;border:1.5px solid var(--line);border-radius:11px;padding:12px 13px;font-size:15px;font-family:inherit;background:#fff}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--green)}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+  .total{display:flex;justify-content:space-between;align-items:center;background:var(--green-l);border-radius:11px;padding:13px 15px;margin:6px 0 14px;font-weight:800;color:var(--green-d)}
+  .total .amt{font-size:22px}
+  .formcard .btn{width:100%;font-size:17px;padding:16px}
+  .formnote{text-align:center;font-size:12px;color:var(--muted);margin-top:11px}
+  .ok{display:none;background:#e8f5ec;border:1px solid var(--green);color:var(--green-d);border-radius:11px;padding:14px;font-weight:700;text-align:center;margin-top:12px}
+
+  /* ---------- faq ---------- */
+  .faq-item{border:1px solid var(--line);border-radius:12px;margin-bottom:12px;overflow:hidden;background:#fff}
+  .faq-item summary{cursor:pointer;list-style:none;padding:17px 18px;font-weight:700;font-size:16px;display:flex;justify-content:space-between;gap:12px}
+  .faq-item summary::-webkit-details-marker{display:none}
+  .faq-item summary::after{content:"+";color:var(--green);font-weight:800;font-size:20px}
+  .faq-item[open] summary::after{content:"–"}
+  .faq-item .a{padding:0 18px 17px;color:var(--muted);font-size:15px}
+  .faq{max-width:760px;margin:0 auto}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--ink);color:#cdd6d0;padding:40px 0 30px;font-size:14px}
+  footer .fgrid{display:flex;flex-wrap:wrap;gap:22px;justify-content:space-between;align-items:flex-start}
+  footer .brand{color:#fff}
+  footer a{color:#9fe0b3}
+  .disclaimer{border-top:1px solid #333d37;margin-top:26px;padding-top:18px;color:#8a958e;font-size:12px;line-height:1.6}
+
+  /* ---------- sticky mobile CTA ---------- */
+  .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;background:#fff;border-top:1px solid var(--line);
+    box-shadow:0 -6px 20px rgba(0,0,0,.08);padding:10px 14px env(safe-area-inset-bottom);display:none;
+    align-items:center;justify-content:space-between;gap:12px}
+  .sticky-cta .p{font-weight:800;color:var(--green-d);font-size:15px}
+  .sticky-cta .p small{display:block;color:var(--muted);font-weight:600;font-size:11px}
+  .sticky-cta .btn{padding:13px 20px}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:880px){
+    .hero-grid{grid-template-columns:1fr;gap:22px}
+    h1{font-size:32px}
+    .cards,.steps,.quotes,.plans{grid-template-columns:1fr}
+    .plan.best{transform:none}
+    .order-grid{grid-template-columns:1fr}
+    .pain-list{grid-template-columns:1fr}
+    .nav .btn-primary{display:none}
+    .sticky-cta{display:flex}
+    body{padding-bottom:74px}
+    section{padding:42px 0}
+    h2{font-size:25px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">🚚 FREE Shipping Nationwide · 💵 Cash on Delivery — Pay only when it arrives</div>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand"><span class="leaf">🌿</span> Kalinga&nbsp;Herbal</div>
+    <a href="#order" class="btn btn-primary">Order Now</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" style="padding-top:34px">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill">🌿 100% Natural · DOH-recognized herb</span>
+      <h1>Support Your <span class="hl">Kidneys &amp; Urinary Health</span> the Natural Filipino Way</h1>
+      <p class="lede">Pure <b>Sambong</b> (<i>Blumea balsamifera</i>) capsules — the herb trusted for generations to help flush uric acid, support healthy urine flow, and ease water retention.</p>
+      <ul class="ticks">
+        <li><span class="c">✓</span> Helps the body flush out excess water &amp; uric acid</li>
+        <li><span class="c">✓</span> Supports kidney function &amp; a healthy urinary tract</li>
+        <li><span class="c">✓</span> Made from a herb recognized by the Philippine DOH</li>
+      </ul>
+      <div class="hero-cta">
+        <a href="#order" class="btn btn-primary">💵 Order via Cash on Delivery</a>
+        <a href="#how" class="btn btn-ghost">How it works</a>
+      </div>
+      <div class="rating">
+        <span class="stars">★★★★★</span>
+        <span><b>4.8/5</b> from happy customers · <b>[[SOLD]]12,000+</b> bottles delivered</span>
+      </div>
+    </div>
+    <div class="hero-img">
+      <div class="ph-img" style="min-height:340px">[ Product photo — Sambong bottle ]</div>
+      <div class="badge-float">✅ Cash on Delivery<br>Nationwide</div>
+    </div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <div class="t"><span class="ic">🌿</span> 100% Pure Sambong</div>
+    <div class="t"><span class="ic">🏛️</span> DOH-recognized herb</div>
+    <div class="t"><span class="ic">🚚</span> Free nationwide shipping</div>
+    <div class="t"><span class="ic">💵</span> Pay on delivery (COD)</div>
+    <div class="t"><span class="ic">🇵🇭</span> Trusted by Filipinos</div>
+  </div>
+</div>
+
+<!-- ============ PAIN ============ -->
+<section class="pain">
+  <div class="wrap">
+    <div class="eyebrow">Sound familiar?</div>
+    <h2>Your body may be telling you something</h2>
+    <p class="sub">Many Filipinos quietly struggle with these everyday signs of poor kidney &amp; urinary health.</p>
+    <ul class="pain-list">
+      <li><span class="x">✕</span> Frequent back or side discomfort</li>
+      <li><span class="x">✕</span> Painful or difficult urination</li>
+      <li><span class="x">✕</span> Swelling from water retention (edema)</li>
+      <li><span class="x">✕</span> High uric acid &amp; recurring kidney stones</li>
+      <li><span class="x">✕</span> Feeling “puffy,” heavy, or bloated</li>
+      <li><span class="x">✕</span> Worried about long-term kidney health</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ BENEFITS ============ -->
+<section id="benefits">
+  <div class="wrap">
+    <div class="eyebrow">Why Sambong</div>
+    <h2>One herb, trusted for kidney &amp; urinary wellness</h2>
+    <p class="sub">Sambong is one of the most studied herbal plants in the Philippines, valued for its natural diuretic action.</p>
+    <div class="cards">
+      <div class="card"><div class="ic">💧</div><h3>Natural Diuretic</h3><p>Helps increase urine flow so your body can flush out excess water and waste naturally.</p></div>
+      <div class="card"><div class="ic">🪨</div><h3>Kidney Stone Support</h3><p>Traditionally used to help wash out tiny crystals before they build into larger stones.</p></div>
+      <div class="card"><div class="ic">⚖️</div><h3>Flushes Uric Acid</h3><p>Supports the body in clearing excess uric acid — a relief for those prone to buildup.</p></div>
+      <div class="card"><div class="ic">🚰</div><h3>Urinary Tract Comfort</h3><p>Helps maintain a clean, healthy urinary tract and comfortable, regular flow.</p></div>
+      <div class="card"><div class="ic">🍃</div><h3>100% Natural</h3><p>Made from pure Sambong leaves — no harsh chemicals, gentle for daily wellness use.</p></div>
+      <div class="card"><div class="ic">🏛️</div><h3>Heritage You Can Trust</h3><p>Sambong is recognized by the Philippine Department of Health as a herbal medicine.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how" style="background:var(--soft)">
+  <div class="wrap">
+    <div class="eyebrow">Simple to take</div>
+    <h2>Feel the natural difference in 3 steps</h2>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h3>Take daily</h3><p>Take Sambong capsules with a full glass of water, as directed on the label.</p></div>
+      <div class="step"><div class="n">2</div><h3>Hydrate &amp; flush</h3><p>Sambong’s natural diuretic action gently supports your body’s flushing process.</p></div>
+      <div class="step"><div class="n">3</div><h3>Feel lighter</h3><p>Many users report feeling less puffy and more comfortable with consistent use.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OFFER / PRICING ============ -->
+<section class="offer" id="pricing">
+  <div class="wrap">
+    <div class="eyebrow">Choose your supply</div>
+    <h2>Stock up &amp; save — Cash on Delivery</h2>
+    <p class="sub">Best results come with consistent use. Bundle up, save more, and pay only when your order arrives.</p>
+    <div class="plans">
+      <div class="plan">
+        <h3>Starter</h3>
+        <div class="qty">1 Bottle · ~1 month supply</div>
+        <div class="price">₱990<span style="font-size:14px;font-weight:600">[[PRICE_1]]</span></div>
+        <div class="was">₱1,290</div>
+        <span class="save">Try it out</span>
+        <ul><li>1 bottle of Sambong</li><li>Free nationwide shipping</li><li>Cash on Delivery</li></ul>
+        <button class="btn btn-ghost" data-plan="1" data-amt="990" data-label="1 Bottle (₱990)">Select</button>
+      </div>
+      <div class="plan best">
+        <div class="tag">★ MOST POPULAR · BEST VALUE</div>
+        <h3>Family Pack</h3>
+        <div class="qty">Buy 2 + 1 FREE · 3 bottles</div>
+        <div class="price">₱1,890<span style="font-size:14px;font-weight:600">[[PRICE_2]]</span></div>
+        <div class="was">₱3,870</div>
+        <span class="save">Save ₱1,980</span>
+        <ul><li>3 bottles (1 free!)</li><li>Free nationwide shipping</li><li>Cash on Delivery</li><li>Best for steady results</li></ul>
+        <button class="btn btn-green" data-plan="3" data-amt="1890" data-label="Buy 2 + 1 Free — 3 Bottles (₱1,890)">Select &amp; Save</button>
+      </div>
+      <div class="plan">
+        <h3>Best Value</h3>
+        <div class="qty">Buy 3 + 2 FREE · 5 bottles</div>
+        <div class="price">₱2,790<span style="font-size:14px;font-weight:600">[[PRICE_3]]</span></div>
+        <div class="was">₱6,450</div>
+        <span class="save">Save ₱3,660</span>
+        <ul><li>5 bottles (2 free!)</li><li>Free nationwide shipping</li><li>Cash on Delivery</li><li>Lowest price per bottle</li></ul>
+        <button class="btn btn-ghost" data-plan="5" data-amt="2790" data-label="Buy 3 + 2 Free — 5 Bottles (₱2,790)">Select</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Real customers</div>
+    <h2>Loved by Filipino families</h2>
+    <p class="sub">[[ Replace with verified customer reviews / screenshots before launch ]]</p>
+    <div class="quotes">
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>“After a few weeks I felt less bloated and my trips to the CR feel more normal. Natural pa, kaya panatag ako.”</p>
+        <div class="who"><div class="av">M</div><div><b>Maria S.</b><span>Quezon City</span></div></div>
+      </div>
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>“My lolo has been taking Sambong for his kidneys. COD made it easy to order for him. Fast delivery!”</p>
+        <div class="who"><div class="av">J</div><div><b>Jomar R.</b><span>Cebu</span></div></div>
+      </div>
+      <div class="quote">
+        <div class="stars">★★★★★</div>
+        <p>“I like that it’s 100% herbal. Sulit yung 2+1 promo, tinipid ko na agad for the whole family.”</p>
+        <div class="who"><div class="av">A</div><div><b>Ana L.</b><span>Davao</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ORDER FORM ============ -->
+<section class="order" id="order">
+  <div class="wrap">
+    <div class="eyebrow" style="color:#9fe0b3">Place your order</div>
+    <h2>Order now — Pay on delivery</h2>
+    <p class="sub">No prepayment needed. Fill in your details and pay the rider when your Sambong arrives.</p>
+    <div class="order-grid">
+      <ul class="order-info">
+        <li><span class="ic">💵</span><div><b>Cash on Delivery</b><small>Pay only when you receive your order — zero risk.</small></div></li>
+        <li><span class="ic">🚚</span><div><b>FREE shipping nationwide</b><small>Delivered straight to your door, anywhere in the Philippines.</small></div></li>
+        <li><span class="ic">⏱️</span><div><b>Fast dispatch</b><small>Orders confirmed by phone/SMS, then shipped within 24–48 hours.</small></div></li>
+        <li><span class="ic">🔒</span><div><b>Your info is safe</b><small>We only use your details to deliver your order.</small></div></li>
+        <li><span class="ic">📞</span><div><b>Need help ordering?</b><small>Call/text <b>[[PHONE]] 0900-000-0000</b> or message us on <a href="[[FB]]#" style="color:#9fe0b3;text-decoration:underline">Facebook</a>.</small></div></li>
+      </ul>
+
+      <form class="formcard" id="orderForm" novalidate>
+        <h3>📝 COD Order Form</h3>
+        <p class="fc-sub">Fill this out and we’ll confirm your order shortly.</p>
+
+        <div class="field">
+          <label for="fname">Full Name *</label>
+          <input id="fname" name="name" type="text" required placeholder="Juan Dela Cruz" autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="phone">Mobile Number *</label>
+          <input id="phone" name="phone" type="tel" required placeholder="09XX XXX XXXX" inputmode="numeric" autocomplete="tel" />
+        </div>
+        <div class="field">
+          <label for="addr">Complete Delivery Address *</label>
+          <textarea id="addr" name="address" rows="2" required placeholder="House no., street, barangay" autocomplete="street-address"></textarea>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="city">City / Municipality *</label>
+            <input id="city" name="city" type="text" required placeholder="e.g. Quezon City" />
+          </div>
+          <div class="field">
+            <label for="province">Province *</label>
+            <input id="province" name="province" type="text" required placeholder="e.g. Metro Manila" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="package">Package *</label>
+          <select id="package" name="package" required>
+            <option value="1" data-amt="990">1 Bottle — ₱990</option>
+            <option value="3" data-amt="1890" selected>Buy 2 + 1 Free (3 bottles) — ₱1,890 ★ Best value</option>
+            <option value="5" data-amt="2790">Buy 3 + 2 Free (5 bottles) — ₱2,790</option>
+          </select>
+        </div>
+
+        <div class="total">
+          <span>Total (Cash on Delivery)</span>
+          <span class="amt" id="totalAmt">₱1,890</span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">✅ Confirm Order (COD)</button>
+        <p class="formnote">By ordering you agree to be contacted for delivery confirmation. Free shipping included.</p>
+        <div class="ok" id="okMsg">🎉 Salamat! Your order has been received. We’ll call/text you shortly to confirm delivery.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section style="background:var(--soft)">
+  <div class="wrap">
+    <div class="eyebrow">Questions?</div>
+    <h2>Frequently asked questions</h2>
+    <div class="faq">
+      <details class="faq-item" open><summary>What is Sambong used for?</summary><div class="a">Sambong (<i>Blumea balsamifera</i>) is a Filipino herb traditionally valued as a natural diuretic. It’s commonly used to help support kidney function, flush out excess water and uric acid, and maintain a healthy urinary tract.</div></details>
+      <details class="faq-item"><summary>How do I pay?</summary><div class="a">Cash on Delivery (COD). You pay the courier in cash when your order arrives — no need to pay anything upfront.</div></details>
+      <details class="faq-item"><summary>How long is delivery?</summary><div class="a">Orders are usually confirmed within a few hours and shipped within 24–48 hours. Delivery time then depends on your location, typically a few days nationwide.</div></details>
+      <details class="faq-item"><summary>Is it safe? Any side effects?</summary><div class="a">Sambong is a natural herb generally well tolerated. If you are pregnant, breastfeeding, taking maintenance medication, or have an existing medical condition, please consult your doctor before use.</div></details>
+      <details class="faq-item"><summary>How many bottles should I order?</summary><div class="a">For best and most consistent results, most customers choose the 2+1 or 3+2 bundles for a continuous supply — and you save more per bottle.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div style="max-width:320px">
+        <div class="brand" style="font-size:18px;margin-bottom:10px">🌿 Kalinga Herbal</div>
+        <p>Natural Filipino herbal wellness, delivered to your door with Cash on Delivery.</p>
+      </div>
+      <div>
+        <b style="color:#fff;display:block;margin-bottom:8px">Order &amp; Support</b>
+        📞 [[PHONE]] 0900-000-0000<br>
+        💬 <a href="[[FB]]#">Message us on Facebook</a><br>
+        🚚 Free nationwide shipping
+      </div>
+      <div>
+        <b style="color:#fff;display:block;margin-bottom:8px">Quick links</b>
+        <a href="#benefits">Benefits</a><br>
+        <a href="#pricing">Pricing</a><br>
+        <a href="#order">Order now</a><br>
+        <a href="#how">How it works</a>
+      </div>
+    </div>
+    <p class="disclaimer">
+      <b>Disclaimer:</b> [[FDA]] These statements have not been evaluated for the purpose of diagnosing, treating, curing, or preventing any disease. Sambong is a traditional herbal supplement and is not a substitute for professional medical advice, diagnosis, or treatment. Always consult a qualified healthcare provider before starting any supplement, especially if you are pregnant, nursing, have a medical condition, or are taking medication. Individual results may vary.
+      <br><br>© <span id="yr"></span> Kalinga Herbal. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<!-- sticky mobile CTA -->
+<div class="sticky-cta">
+  <div class="p">₱1,890 <small>2+1 Free · COD</small></div>
+  <a href="#order" class="btn btn-primary">Order Now</a>
+</div>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  var pkg = document.getElementById('package');
+  var totalAmt = document.getElementById('totalAmt');
+  function peso(n){ return '₱' + Number(n).toLocaleString('en-PH'); }
+  function syncTotal(){
+    var opt = pkg.options[pkg.selectedIndex];
+    totalAmt.textContent = peso(opt.getAttribute('data-amt'));
+  }
+  pkg.addEventListener('change', syncTotal);
+  syncTotal();
+
+  // Pricing-card "Select" buttons -> set package + jump to form
+  document.querySelectorAll('.plan [data-plan]').forEach(function(b){
+    b.addEventListener('click', function(){
+      pkg.value = b.getAttribute('data-plan');
+      syncTotal();
+      document.getElementById('order').scrollIntoView({behavior:'smooth'});
+      setTimeout(function(){ document.getElementById('fname').focus(); }, 500);
+    });
+  });
+
+  // COD order submit.
+  // TODO: replace the demo handler below with a real POST to [[FORM_ENDPOINT]]
+  // (e.g. your CRM, Google Sheet webhook, or order API). On success, show #okMsg.
+  document.getElementById('orderForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!this.checkValidity()){ this.reportValidity(); return; }
+    var data = Object.fromEntries(new FormData(this).entries());
+    console.log('COD order:', data); // <-- send `data` to your backend here
+    document.getElementById('okMsg').style.display = 'block';
+    this.querySelector('button[type=submit]').textContent = '✅ Order received!';
+    document.getElementById('okMsg').scrollIntoView({behavior:'smooth', block:'center'});
+  });
+</script>
+</body>
+</html>
